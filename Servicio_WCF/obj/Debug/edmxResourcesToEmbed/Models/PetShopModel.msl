@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Pet_Shop_BusinessModelStoreContainer" CdmEntityContainer="Pet_Shop_BusinessEntities">
+    <EntitySetMapping Name="Document_Types">
+      <EntityTypeMapping TypeName="Pet_Shop_BusinessModel.Document_Types">
+        <MappingFragment StoreEntitySet="Document_Types">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Document_Description" ColumnName="Document_Description" />
+          <ScalarProperty Name="Acronym" ColumnName="Acronym" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Persons">
+      <EntityTypeMapping TypeName="Pet_Shop_BusinessModel.Persons">
+        <MappingFragment StoreEntitySet="Persons">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Cellphone" ColumnName="Cellphone" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Id_Document_Type" ColumnName="Id_Document_Type" />
+          <ScalarProperty Name="Document_Number" ColumnName="Document_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pets">
+      <EntityTypeMapping TypeName="Pet_Shop_BusinessModel.Pets">
+        <MappingFragment StoreEntitySet="Pets">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Pet_Name" ColumnName="Pet_Name" />
+          <ScalarProperty Name="Day_Birth" ColumnName="Day_Birth" />
+          <ScalarProperty Name="Id_Race" ColumnName="Id_Race" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Id_Person" ColumnName="Id_Person" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Races">
+      <EntityTypeMapping TypeName="Pet_Shop_BusinessModel.Races">
+        <MappingFragment StoreEntitySet="Races">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description_Race" ColumnName="Description_Race" />
+          <ScalarProperty Name="Id_Type_Animal" ColumnName="Id_Type_Animal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Type_Animals">
+      <EntityTypeMapping TypeName="Pet_Shop_BusinessModel.Type_Animals">
+        <MappingFragment StoreEntitySet="Type_Animals">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description_Animal" ColumnName="Description_Animal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

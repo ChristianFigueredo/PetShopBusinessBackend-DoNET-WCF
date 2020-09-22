@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Pet_Shop_BusinessModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Document_Types">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Document_Description" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Acronym" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Persons" Relationship="Self.FK__Persons__Id_Docu__398D8EEE" FromRole="Document_Types" ToRole="Persons" />
+  </EntityType>
+  <EntityType Name="Persons">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Cellphone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Id_Document_Type" Type="Int32" />
+    <Property Name="Document_Number" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Document_Types" Relationship="Self.FK__Persons__Id_Docu__398D8EEE" FromRole="Persons" ToRole="Document_Types" />
+    <NavigationProperty Name="Pets" Relationship="Self.FK__Pets__Id_Person__4222D4EF" FromRole="Persons" ToRole="Pets" />
+  </EntityType>
+  <EntityType Name="Pets">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Pet_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Day_Birth" Type="DateTime" Precision="0" />
+    <Property Name="Id_Race" Type="Int32" />
+    <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Id_Person" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Persons" Relationship="Self.FK__Pets__Id_Person__4222D4EF" FromRole="Pets" ToRole="Persons" />
+    <NavigationProperty Name="Races" Relationship="Self.FK__Pets__Id_Race__412EB0B6" FromRole="Pets" ToRole="Races" />
+  </EntityType>
+  <EntityType Name="Races">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description_Race" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Id_Type_Animal" Type="Int32" />
+    <NavigationProperty Name="Pets" Relationship="Self.FK__Pets__Id_Race__412EB0B6" FromRole="Races" ToRole="Pets" />
+    <NavigationProperty Name="Type_Animals" Relationship="Self.FK__Races__Id_Type_A__3E52440B" FromRole="Races" ToRole="Type_Animals" />
+  </EntityType>
+  <EntityType Name="Type_Animals">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description_Animal" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Races" Relationship="Self.FK__Races__Id_Type_A__3E52440B" FromRole="Type_Animals" ToRole="Races" />
+  </EntityType>
+  <Association Name="FK__Persons__Id_Docu__398D8EEE">
+    <End Role="Document_Types" Type="Self.Document_Types" Multiplicity="0..1" />
+    <End Role="Persons" Type="Self.Persons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Document_Types">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Persons">
+        <PropertyRef Name="Id_Document_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pets__Id_Person__4222D4EF">
+    <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+    <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persons">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pets">
+        <PropertyRef Name="Id_Person" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pets__Id_Race__412EB0B6">
+    <End Role="Races" Type="Self.Races" Multiplicity="0..1" />
+    <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Races">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pets">
+        <PropertyRef Name="Id_Race" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Races__Id_Type_A__3E52440B">
+    <End Role="Type_Animals" Type="Self.Type_Animals" Multiplicity="0..1" />
+    <End Role="Races" Type="Self.Races" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type_Animals">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Races">
+        <PropertyRef Name="Id_Type_Animal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Pet_Shop_BusinessEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Document_Types" EntityType="Self.Document_Types" />
+    <EntitySet Name="Persons" EntityType="Self.Persons" />
+    <EntitySet Name="Pets" EntityType="Self.Pets" />
+    <EntitySet Name="Races" EntityType="Self.Races" />
+    <EntitySet Name="Type_Animals" EntityType="Self.Type_Animals" />
+    <AssociationSet Name="FK__Persons__Id_Docu__398D8EEE" Association="Self.FK__Persons__Id_Docu__398D8EEE">
+      <End Role="Document_Types" EntitySet="Document_Types" />
+      <End Role="Persons" EntitySet="Persons" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pets__Id_Person__4222D4EF" Association="Self.FK__Pets__Id_Person__4222D4EF">
+      <End Role="Persons" EntitySet="Persons" />
+      <End Role="Pets" EntitySet="Pets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pets__Id_Race__412EB0B6" Association="Self.FK__Pets__Id_Race__412EB0B6">
+      <End Role="Races" EntitySet="Races" />
+      <End Role="Pets" EntitySet="Pets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Races__Id_Type_A__3E52440B" Association="Self.FK__Races__Id_Type_A__3E52440B">
+      <End Role="Type_Animals" EntitySet="Type_Animals" />
+      <End Role="Races" EntitySet="Races" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
