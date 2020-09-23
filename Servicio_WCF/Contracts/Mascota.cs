@@ -25,6 +25,9 @@ namespace Servicio_WCF.Contracts
         public string tipoAnimal { get; set; }
 
         [DataMember]
+        public string estado { get; set; }
+
+        [DataMember]
         public int edad
         {
             get

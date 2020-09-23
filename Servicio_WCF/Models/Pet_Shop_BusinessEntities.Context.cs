@@ -25,10 +25,16 @@ namespace Servicio_WCF.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Document_Types> Document_Types { get; set; }
-        public virtual DbSet<Persons> Persons { get; set; }
-        public virtual DbSet<Pets> Pets { get; set; }
-        public virtual DbSet<Races> Races { get; set; }
-        public virtual DbSet<Type_Animals> Type_Animals { get; set; }
+        public virtual DbSet<AnimalType> AnimalType { get; set; }
+        public virtual DbSet<DocumentType> DocumentType { get; set; }
+        public virtual DbSet<Person> Person { get; set; }
+        public virtual DbSet<PersonStateHistory> PersonStateHistory { get; set; }
+        public virtual DbSet<Pet> Pet { get; set; }
+        public virtual DbSet<PetStateHistory> PetStateHistory { get; set; }
+        public virtual DbSet<Profile> Profile { get; set; }
+        public virtual DbSet<Race> Race { get; set; }
+        public virtual DbSet<State> State { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<UserData> UserData { get; set; }
     }
 }

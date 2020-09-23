@@ -12,25 +12,20 @@ namespace Servicio_WCF.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Persons
+    public partial class Race
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Persons()
+        public Race()
         {
-            this.Pets = new HashSet<Pets>();
+            this.Pet = new HashSet<Pet>();
         }
     
         public int Id { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string Cellphone { get; set; }
-        public string Adress { get; set; }
-        public string Photo { get; set; }
-        public int Id_Document_Type { get; set; }
-        public string Document_Number { get; set; }
+        public string Description { get; set; }
+        public Nullable<int> Id_Type_Animal { get; set; }
     
-        public virtual Document_Types Document_Types { get; set; }
+        public virtual AnimalType AnimalType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pets> Pets { get; set; }
+        public virtual ICollection<Pet> Pet { get; set; }
     }
 }

@@ -1,0 +1,762 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Pet_Shop_BusinessModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AnimalType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Acronym" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Cellphone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Adress" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Photo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Document_Number" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Id_Document_Type" Type="int" />
+        </EntityType>
+        <EntityType Name="PersonStateHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+          <Property Name="Id_State" Type="int" />
+          <Property Name="Id_Person" Type="int" />
+        </EntityType>
+        <EntityType Name="Pet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pet_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Day_Birth" Type="date" Nullable="false" />
+          <Property Name="Photo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Id_Race" Type="int" />
+          <Property Name="Id_Person" Type="int" />
+        </EntityType>
+        <EntityType Name="PetStateHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+          <Property Name="Id_State" Type="int" />
+          <Property Name="Id_Pet" Type="int" />
+          <Property Name="Id_Person" Type="int" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Race">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_Type_Animal" Type="int" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UserData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nickname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_Person" Type="int" />
+          <Property Name="Id_Profile" Type="int" />
+        </EntityType>
+        <Association Name="FK__Person__Id_Docum__7FEAFD3E">
+          <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="0..1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="Id_Document_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PersonSta__Id_Pe__11158940">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="PersonStateHistory" Type="Self.PersonStateHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonStateHistory">
+              <PropertyRef Name="Id_Person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PersonSta__Id_St__10216507">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="PersonStateHistory" Type="Self.PersonStateHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonStateHistory">
+              <PropertyRef Name="Id_State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pet__Id_Person__0880433F">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pet">
+              <PropertyRef Name="Id_Person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pet__Id_Race__078C1F06">
+          <End Role="Race" Type="Self.Race" Multiplicity="0..1" />
+          <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Race">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pet">
+              <PropertyRef Name="Id_Race" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PetStateH__Id_Pe__0C50D423">
+          <End Role="Pet" Type="Self.Pet" Multiplicity="0..1" />
+          <End Role="PetStateHistory" Type="Self.PetStateHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PetStateHistory">
+              <PropertyRef Name="Id_Pet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PetStateH__Id_Pe__0D44F85C">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="PetStateHistory" Type="Self.PetStateHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PetStateHistory">
+              <PropertyRef Name="Id_Person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PetStateH__Id_St__0B5CAFEA">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="PetStateHistory" Type="Self.PetStateHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PetStateHistory">
+              <PropertyRef Name="Id_State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Race__Id_Type_An__04AFB25B">
+          <End Role="AnimalType" Type="Self.AnimalType" Multiplicity="0..1" />
+          <End Role="Race" Type="Self.Race" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnimalType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Race">
+              <PropertyRef Name="Id_Type_Animal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserData__Id_Per__15DA3E5D">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="UserData" Type="Self.UserData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserData">
+              <PropertyRef Name="Id_Person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserData__Id_Pro__16CE6296">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <End Role="UserData" Type="Self.UserData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserData">
+              <PropertyRef Name="Id_Profile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Pet_Shop_BusinessModelStoreContainer">
+          <EntitySet Name="AnimalType" EntityType="Self.AnimalType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentType" EntityType="Self.DocumentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonStateHistory" EntityType="Self.PersonStateHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pet" EntityType="Self.Pet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PetStateHistory" EntityType="Self.PetStateHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Race" EntityType="Self.Race" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserData" EntityType="Self.UserData" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Person__Id_Docum__7FEAFD3E" Association="Self.FK__Person__Id_Docum__7FEAFD3E">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PersonSta__Id_Pe__11158940" Association="Self.FK__PersonSta__Id_Pe__11158940">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PersonStateHistory" EntitySet="PersonStateHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PersonSta__Id_St__10216507" Association="Self.FK__PersonSta__Id_St__10216507">
+            <End Role="State" EntitySet="State" />
+            <End Role="PersonStateHistory" EntitySet="PersonStateHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pet__Id_Person__0880433F" Association="Self.FK__Pet__Id_Person__0880433F">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Pet" EntitySet="Pet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pet__Id_Race__078C1F06" Association="Self.FK__Pet__Id_Race__078C1F06">
+            <End Role="Race" EntitySet="Race" />
+            <End Role="Pet" EntitySet="Pet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PetStateH__Id_Pe__0C50D423" Association="Self.FK__PetStateH__Id_Pe__0C50D423">
+            <End Role="Pet" EntitySet="Pet" />
+            <End Role="PetStateHistory" EntitySet="PetStateHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PetStateH__Id_Pe__0D44F85C" Association="Self.FK__PetStateH__Id_Pe__0D44F85C">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PetStateHistory" EntitySet="PetStateHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PetStateH__Id_St__0B5CAFEA" Association="Self.FK__PetStateH__Id_St__0B5CAFEA">
+            <End Role="State" EntitySet="State" />
+            <End Role="PetStateHistory" EntitySet="PetStateHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Race__Id_Type_An__04AFB25B" Association="Self.FK__Race__Id_Type_An__04AFB25B">
+            <End Role="AnimalType" EntitySet="AnimalType" />
+            <End Role="Race" EntitySet="Race" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserData__Id_Per__15DA3E5D" Association="Self.FK__UserData__Id_Per__15DA3E5D">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="UserData" EntitySet="UserData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserData__Id_Pro__16CE6296" Association="Self.FK__UserData__Id_Pro__16CE6296">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="UserData" EntitySet="UserData" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Pet_Shop_BusinessModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AnimalType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Race" Relationship="Self.FK__Race__Id_Type_An__04AFB25B" FromRole="AnimalType" ToRole="Race" />
+        </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Acronym" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__Person__Id_Docum__7FEAFD3E" FromRole="DocumentType" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cellphone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Document_Number" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Document_Type" Type="Int32" />
+          <NavigationProperty Name="DocumentType" Relationship="Self.FK__Person__Id_Docum__7FEAFD3E" FromRole="Person" ToRole="DocumentType" />
+          <NavigationProperty Name="PersonStateHistory" Relationship="Self.FK__PersonSta__Id_Pe__11158940" FromRole="Person" ToRole="PersonStateHistory" />
+          <NavigationProperty Name="Pet" Relationship="Self.FK__Pet__Id_Person__0880433F" FromRole="Person" ToRole="Pet" />
+          <NavigationProperty Name="PetStateHistory" Relationship="Self.FK__PetStateH__Id_Pe__0D44F85C" FromRole="Person" ToRole="PetStateHistory" />
+          <NavigationProperty Name="UserData" Relationship="Self.FK__UserData__Id_Per__15DA3E5D" FromRole="Person" ToRole="UserData" />
+        </EntityType>
+        <EntityType Name="PersonStateHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Id_State" Type="Int32" />
+          <Property Name="Id_Person" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__PersonSta__Id_Pe__11158940" FromRole="PersonStateHistory" ToRole="Person" />
+          <NavigationProperty Name="State" Relationship="Self.FK__PersonSta__Id_St__10216507" FromRole="PersonStateHistory" ToRole="State" />
+        </EntityType>
+        <EntityType Name="Pet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pet_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Day_Birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Race" Type="Int32" />
+          <Property Name="Id_Person" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__Pet__Id_Person__0880433F" FromRole="Pet" ToRole="Person" />
+          <NavigationProperty Name="Race" Relationship="Self.FK__Pet__Id_Race__078C1F06" FromRole="Pet" ToRole="Race" />
+          <NavigationProperty Name="PetStateHistory" Relationship="Self.FK__PetStateH__Id_Pe__0C50D423" FromRole="Pet" ToRole="PetStateHistory" />
+        </EntityType>
+        <EntityType Name="PetStateHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Id_State" Type="Int32" />
+          <Property Name="Id_Pet" Type="Int32" />
+          <Property Name="Id_Person" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__PetStateH__Id_Pe__0D44F85C" FromRole="PetStateHistory" ToRole="Person" />
+          <NavigationProperty Name="Pet" Relationship="Self.FK__PetStateH__Id_Pe__0C50D423" FromRole="PetStateHistory" ToRole="Pet" />
+          <NavigationProperty Name="State" Relationship="Self.FK__PetStateH__Id_St__0B5CAFEA" FromRole="PetStateHistory" ToRole="State" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="UserData" Relationship="Self.FK__UserData__Id_Pro__16CE6296" FromRole="Profile" ToRole="UserData" />
+        </EntityType>
+        <EntityType Name="Race">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Type_Animal" Type="Int32" />
+          <NavigationProperty Name="AnimalType" Relationship="Self.FK__Race__Id_Type_An__04AFB25B" FromRole="Race" ToRole="AnimalType" />
+          <NavigationProperty Name="Pet" Relationship="Self.FK__Pet__Id_Race__078C1F06" FromRole="Race" ToRole="Pet" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PersonStateHistory" Relationship="Self.FK__PersonSta__Id_St__10216507" FromRole="State" ToRole="PersonStateHistory" />
+          <NavigationProperty Name="PetStateHistory" Relationship="Self.FK__PetStateH__Id_St__0B5CAFEA" FromRole="State" ToRole="PetStateHistory" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Person" Type="Int32" />
+          <Property Name="Id_Profile" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="Self.FK__UserData__Id_Per__15DA3E5D" FromRole="UserData" ToRole="Person" />
+          <NavigationProperty Name="Profile" Relationship="Self.FK__UserData__Id_Pro__16CE6296" FromRole="UserData" ToRole="Profile" />
+        </EntityType>
+        <Association Name="FK__Race__Id_Type_An__04AFB25B">
+          <End Role="AnimalType" Type="Self.AnimalType" Multiplicity="0..1" />
+          <End Role="Race" Type="Self.Race" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnimalType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Race">
+              <PropertyRef Name="Id_Type_Animal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Person__Id_Docum__7FEAFD3E">
+          <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="0..1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="Id_Document_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PersonSta__Id_Pe__11158940">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="PersonStateHistory" Type="Self.PersonStateHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonStateHistory">
+              <PropertyRef Name="Id_Person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pet__Id_Person__0880433F">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pet">
+              <PropertyRef Name="Id_Person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PetStateH__Id_Pe__0D44F85C">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="PetStateHistory" Type="Self.PetStateHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PetStateHistory">
+              <PropertyRef Name="Id_Person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserData__Id_Per__15DA3E5D">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="UserData" Type="Self.UserData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserData">
+              <PropertyRef Name="Id_Person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PersonSta__Id_St__10216507">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="PersonStateHistory" Type="Self.PersonStateHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonStateHistory">
+              <PropertyRef Name="Id_State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pet__Id_Race__078C1F06">
+          <End Role="Race" Type="Self.Race" Multiplicity="0..1" />
+          <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Race">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pet">
+              <PropertyRef Name="Id_Race" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PetStateH__Id_Pe__0C50D423">
+          <End Role="Pet" Type="Self.Pet" Multiplicity="0..1" />
+          <End Role="PetStateHistory" Type="Self.PetStateHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PetStateHistory">
+              <PropertyRef Name="Id_Pet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PetStateH__Id_St__0B5CAFEA">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="PetStateHistory" Type="Self.PetStateHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PetStateHistory">
+              <PropertyRef Name="Id_State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserData__Id_Pro__16CE6296">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+          <End Role="UserData" Type="Self.UserData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserData">
+              <PropertyRef Name="Id_Profile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Pet_Shop_BusinessEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AnimalType" EntityType="Self.AnimalType" />
+          <EntitySet Name="DocumentType" EntityType="Self.DocumentType" />
+          <EntitySet Name="Person" EntityType="Self.Person" />
+          <EntitySet Name="PersonStateHistory" EntityType="Self.PersonStateHistory" />
+          <EntitySet Name="Pet" EntityType="Self.Pet" />
+          <EntitySet Name="PetStateHistory" EntityType="Self.PetStateHistory" />
+          <EntitySet Name="Profile" EntityType="Self.Profile" />
+          <EntitySet Name="Race" EntityType="Self.Race" />
+          <EntitySet Name="State" EntityType="Self.State" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="UserData" EntityType="Self.UserData" />
+          <AssociationSet Name="FK__Race__Id_Type_An__04AFB25B" Association="Self.FK__Race__Id_Type_An__04AFB25B">
+            <End Role="AnimalType" EntitySet="AnimalType" />
+            <End Role="Race" EntitySet="Race" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Person__Id_Docum__7FEAFD3E" Association="Self.FK__Person__Id_Docum__7FEAFD3E">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PersonSta__Id_Pe__11158940" Association="Self.FK__PersonSta__Id_Pe__11158940">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PersonStateHistory" EntitySet="PersonStateHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pet__Id_Person__0880433F" Association="Self.FK__Pet__Id_Person__0880433F">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Pet" EntitySet="Pet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PetStateH__Id_Pe__0D44F85C" Association="Self.FK__PetStateH__Id_Pe__0D44F85C">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PetStateHistory" EntitySet="PetStateHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserData__Id_Per__15DA3E5D" Association="Self.FK__UserData__Id_Per__15DA3E5D">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="UserData" EntitySet="UserData" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PersonSta__Id_St__10216507" Association="Self.FK__PersonSta__Id_St__10216507">
+            <End Role="State" EntitySet="State" />
+            <End Role="PersonStateHistory" EntitySet="PersonStateHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pet__Id_Race__078C1F06" Association="Self.FK__Pet__Id_Race__078C1F06">
+            <End Role="Race" EntitySet="Race" />
+            <End Role="Pet" EntitySet="Pet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PetStateH__Id_Pe__0C50D423" Association="Self.FK__PetStateH__Id_Pe__0C50D423">
+            <End Role="Pet" EntitySet="Pet" />
+            <End Role="PetStateHistory" EntitySet="PetStateHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PetStateH__Id_St__0B5CAFEA" Association="Self.FK__PetStateH__Id_St__0B5CAFEA">
+            <End Role="State" EntitySet="State" />
+            <End Role="PetStateHistory" EntitySet="PetStateHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserData__Id_Pro__16CE6296" Association="Self.FK__UserData__Id_Pro__16CE6296">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="UserData" EntitySet="UserData" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Pet_Shop_BusinessModelStoreContainer" CdmEntityContainer="Pet_Shop_BusinessEntities">
+          <EntitySetMapping Name="AnimalType">
+            <EntityTypeMapping TypeName="Pet_Shop_BusinessModel.AnimalType">
+              <MappingFragment StoreEntitySet="AnimalType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentType">
+            <EntityTypeMapping TypeName="Pet_Shop_BusinessModel.DocumentType">
+              <MappingFragment StoreEntitySet="DocumentType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Acronym" ColumnName="Acronym" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person">
+            <EntityTypeMapping TypeName="Pet_Shop_BusinessModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Cellphone" ColumnName="Cellphone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Document_Number" ColumnName="Document_Number" />
+                <ScalarProperty Name="Id_Document_Type" ColumnName="Id_Document_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonStateHistory">
+            <EntityTypeMapping TypeName="Pet_Shop_BusinessModel.PersonStateHistory">
+              <MappingFragment StoreEntitySet="PersonStateHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="Id_State" ColumnName="Id_State" />
+                <ScalarProperty Name="Id_Person" ColumnName="Id_Person" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pet">
+            <EntityTypeMapping TypeName="Pet_Shop_BusinessModel.Pet">
+              <MappingFragment StoreEntitySet="Pet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Pet_Name" ColumnName="Pet_Name" />
+                <ScalarProperty Name="Day_Birth" ColumnName="Day_Birth" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Id_Race" ColumnName="Id_Race" />
+                <ScalarProperty Name="Id_Person" ColumnName="Id_Person" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PetStateHistory">
+            <EntityTypeMapping TypeName="Pet_Shop_BusinessModel.PetStateHistory">
+              <MappingFragment StoreEntitySet="PetStateHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="Id_State" ColumnName="Id_State" />
+                <ScalarProperty Name="Id_Pet" ColumnName="Id_Pet" />
+                <ScalarProperty Name="Id_Person" ColumnName="Id_Person" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profile">
+            <EntityTypeMapping TypeName="Pet_Shop_BusinessModel.Profile">
+              <MappingFragment StoreEntitySet="Profile">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Race">
+            <EntityTypeMapping TypeName="Pet_Shop_BusinessModel.Race">
+              <MappingFragment StoreEntitySet="Race">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id_Type_Animal" ColumnName="Id_Type_Animal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="State">
+            <EntityTypeMapping TypeName="Pet_Shop_BusinessModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Pet_Shop_BusinessModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserData">
+            <EntityTypeMapping TypeName="Pet_Shop_BusinessModel.UserData">
+              <MappingFragment StoreEntitySet="UserData">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="Id_Person" ColumnName="Id_Person" />
+                <ScalarProperty Name="Id_Profile" ColumnName="Id_Profile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

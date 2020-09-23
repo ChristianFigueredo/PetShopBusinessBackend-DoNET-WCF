@@ -69,15 +69,15 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\PetShopModel.Context.tt">
+    <Content Include="Models\Pet_Shop_BusinessEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PetShopModel.Context.cs</LastGenOutput>
-      <DependentUpon>PetShopModel.edmx</DependentUpon>
+      <DependentUpon>Pet_Shop_BusinessEntities.edmx</DependentUpon>
+      <LastGenOutput>Pet_Shop_BusinessEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\PetShopModel.tt">
+    <Content Include="Models\Pet_Shop_BusinessEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PetShopModel.edmx</DependentUpon>
-      <LastGenOutput>PetShopModel.cs</LastGenOutput>
+      <DependentUpon>Pet_Shop_BusinessEntities.edmx</DependentUpon>
+      <LastGenOutput>Pet_Shop_BusinessEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Service1.svc" />
     <Content Include="Web.config" />
@@ -96,35 +96,53 @@
     <Compile Include="Contracts\ResponseConsultaTiposAnimal.cs" />
     <Compile Include="Contracts\TipoAnimal.cs" />
     <Compile Include="Contracts\TipoDocumento.cs" />
-    <Compile Include="Models\Document_Types.cs">
-      <DependentUpon>PetShopModel.tt</DependentUpon>
+    <Compile Include="Models\AnimalType.cs">
+      <DependentUpon>Pet_Shop_BusinessEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Persons.cs">
-      <DependentUpon>PetShopModel.tt</DependentUpon>
+    <Compile Include="Models\DocumentType.cs">
+      <DependentUpon>Pet_Shop_BusinessEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Pets.cs">
-      <DependentUpon>PetShopModel.tt</DependentUpon>
+    <Compile Include="Models\Person.cs">
+      <DependentUpon>Pet_Shop_BusinessEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PetShopModel.Context.cs">
+    <Compile Include="Models\PersonStateHistory.cs">
+      <DependentUpon>Pet_Shop_BusinessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pet.cs">
+      <DependentUpon>Pet_Shop_BusinessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PetStateHistory.cs">
+      <DependentUpon>Pet_Shop_BusinessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pet_Shop_BusinessEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PetShopModel.Context.tt</DependentUpon>
+      <DependentUpon>Pet_Shop_BusinessEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PetShopModel.cs">
+    <Compile Include="Models\Pet_Shop_BusinessEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PetShopModel.tt</DependentUpon>
+      <DependentUpon>Pet_Shop_BusinessEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PetShopModel.Designer.cs">
+    <Compile Include="Models\Pet_Shop_BusinessEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PetShopModel.edmx</DependentUpon>
+      <DependentUpon>Pet_Shop_BusinessEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Races.cs">
-      <DependentUpon>PetShopModel.tt</DependentUpon>
+    <Compile Include="Models\Profile.cs">
+      <DependentUpon>Pet_Shop_BusinessEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Type_Animals.cs">
-      <DependentUpon>PetShopModel.tt</DependentUpon>
+    <Compile Include="Models\Race.cs">
+      <DependentUpon>Pet_Shop_BusinessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\State.cs">
+      <DependentUpon>Pet_Shop_BusinessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>Pet_Shop_BusinessEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserData.cs">
+      <DependentUpon>Pet_Shop_BusinessEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
@@ -136,12 +154,12 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\PetShopModel.edmx">
+    <EntityDeploy Include="Models\Pet_Shop_BusinessEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PetShopModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>Pet_Shop_BusinessEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\PetShopModel.edmx.diagram">
-      <DependentUpon>PetShopModel.edmx</DependentUpon>
+    <Content Include="Models\Pet_Shop_BusinessEntities.edmx.diagram">
+      <DependentUpon>Pet_Shop_BusinessEntities.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">

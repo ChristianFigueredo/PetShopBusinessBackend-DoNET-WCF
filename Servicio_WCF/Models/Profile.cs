@@ -12,20 +12,19 @@ namespace Servicio_WCF.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Races
+    public partial class Profile
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Races()
+        public Profile()
         {
-            this.Pets = new HashSet<Pets>();
+            this.UserData = new HashSet<UserData>();
         }
     
         public int Id { get; set; }
-        public string Description_Race { get; set; }
-        public int Id_Type_Animal { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pets> Pets { get; set; }
-        public virtual Type_Animals Type_Animals { get; set; }
+        public virtual ICollection<UserData> UserData { get; set; }
     }
 }

@@ -12,18 +12,16 @@ namespace Servicio_WCF.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Type_Animals
+    public partial class PetStateHistory
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Type_Animals()
-        {
-            this.Races = new HashSet<Races>();
-        }
-    
         public int Id { get; set; }
-        public string Description_Animal { get; set; }
+        public System.DateTime TransactionDate { get; set; }
+        public Nullable<int> Id_State { get; set; }
+        public Nullable<int> Id_Pet { get; set; }
+        public Nullable<int> Id_Person { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Races> Races { get; set; }
+        public virtual Person Person { get; set; }
+        public virtual Pet Pet { get; set; }
+        public virtual State State { get; set; }
     }
 }

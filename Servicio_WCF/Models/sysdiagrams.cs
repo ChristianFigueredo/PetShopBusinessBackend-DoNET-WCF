@@ -12,16 +12,12 @@ namespace Servicio_WCF.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Pets
+    public partial class sysdiagrams
     {
-        public int Id { get; set; }
-        public string Pet_Name { get; set; }
-        public System.DateTime Day_Birth { get; set; }
-        public Nullable<int> Id_Race { get; set; }
-        public string Photo { get; set; }
-        public int Id_Person { get; set; }
-    
-        public virtual Persons Persons { get; set; }
-        public virtual Races Races { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

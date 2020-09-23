@@ -12,19 +12,15 @@ namespace Servicio_WCF.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Document_Types
+    public partial class UserData
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Document_Types()
-        {
-            this.Persons = new HashSet<Persons>();
-        }
-    
         public int Id { get; set; }
-        public string Document_Description { get; set; }
-        public string Acronym { get; set; }
+        public string Password { get; set; }
+        public string Nickname { get; set; }
+        public Nullable<int> Id_Person { get; set; }
+        public Nullable<int> Id_Profile { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Persons> Persons { get; set; }
+        public virtual Person Person { get; set; }
+        public virtual Profile Profile { get; set; }
     }
 }

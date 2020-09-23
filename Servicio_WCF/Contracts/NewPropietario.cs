@@ -19,6 +19,9 @@ namespace Servicio_WCF.Contracts
         public string cellphone { get; set; }
 
         [DataMember]
+        public string email { get; set; }
+
+        [DataMember]
         public string adress { get; set; }
 
         [DataMember]

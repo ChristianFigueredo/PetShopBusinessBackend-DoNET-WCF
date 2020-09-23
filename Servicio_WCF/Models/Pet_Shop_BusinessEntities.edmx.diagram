@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b995cbcc7da6494ab5e96e950e341193" Name="Diagram1">
+        <EntityTypeShape EntityType="Pet_Shop_BusinessModel.AnimalType" Width="1.5" PointX="3.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Pet_Shop_BusinessModel.DocumentType" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Pet_Shop_BusinessModel.Person" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Pet_Shop_BusinessModel.PersonStateHistory" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Pet_Shop_BusinessModel.Pet" Width="1.5" PointX="8.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Pet_Shop_BusinessModel.PetStateHistory" Width="1.5" PointX="10.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Pet_Shop_BusinessModel.Profile" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Pet_Shop_BusinessModel.Race" Width="1.5" PointX="6" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Pet_Shop_BusinessModel.State" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Pet_Shop_BusinessModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Pet_Shop_BusinessModel.UserData" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="Pet_Shop_BusinessModel.FK__Race__Id_Type_An__04AFB25B" ManuallyRouted="false" />
+        <AssociationConnector Association="Pet_Shop_BusinessModel.FK__Person__Id_Docum__7FEAFD3E" ManuallyRouted="false" />
+        <AssociationConnector Association="Pet_Shop_BusinessModel.FK__PersonSta__Id_Pe__11158940" ManuallyRouted="false" />
+        <AssociationConnector Association="Pet_Shop_BusinessModel.FK__Pet__Id_Person__0880433F" ManuallyRouted="false" />
+        <AssociationConnector Association="Pet_Shop_BusinessModel.FK__PetStateH__Id_Pe__0D44F85C" ManuallyRouted="false" />
+        <AssociationConnector Association="Pet_Shop_BusinessModel.FK__UserData__Id_Per__15DA3E5D" ManuallyRouted="false" />
+        <AssociationConnector Association="Pet_Shop_BusinessModel.FK__PersonSta__Id_St__10216507" ManuallyRouted="false" />
+        <AssociationConnector Association="Pet_Shop_BusinessModel.FK__Pet__Id_Race__078C1F06" ManuallyRouted="false" />
+        <AssociationConnector Association="Pet_Shop_BusinessModel.FK__PetStateH__Id_Pe__0C50D423" ManuallyRouted="false" />
+        <AssociationConnector Association="Pet_Shop_BusinessModel.FK__PetStateH__Id_St__0B5CAFEA" ManuallyRouted="false" />
+        <AssociationConnector Association="Pet_Shop_BusinessModel.FK__UserData__Id_Pro__16CE6296" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
